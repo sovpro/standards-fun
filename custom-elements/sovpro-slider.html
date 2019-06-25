@@ -2,16 +2,29 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="robots" content="noindex">
+        <meta name="googlebot" content="noindex">
         <title>Slider Custom Element in standard HTML, CSS and JavaScript</title>
+        <script src="../javascripts/makelogfunc.js"></script>
         <script>
+            // make a 10 line log under slider  #2
+            var log = makelogfunc({'afterend':'#prelog', 'head':true, 'roll':10})
+
+            // copy slider #2 value to slider #1 on input
             document.addEventListener('DOMContentLoaded', () => {
                 const s1 = document.querySelector('#s1')
                 const s2 = document.querySelector('#s2')
+                s2.addEventListener('input', ({value}) =>
+                    s1.value = value, { passive: true })
                 document.querySelector('#s1-value').textContent = s1.value
                 document.querySelector('#s2-value').textContent = s2.value
             }, { once: true, passive: true })
 
+            // log the most recent 15 value inputs of slider #1
             document.addEventListener('input', (evt) => {
+                if (evt.target.hasAttribute('id') && 
+                    evt.target.id === 's1')
+                    log(evt.value)
                 const valueSpan = document.querySelector('#' + evt.target.id + '-value')
                 valueSpan.textContent = evt.value
             }, { passive: true, capture: false })
@@ -32,12 +45,15 @@
         <p>Tested on desktop with mouse-driven interaction in latest Firefox, Chrome. Not optimized for performance.</p>
 
         <h2>Slider #1</h2>
+        <p>Follows input events from #2 via addEventListener</p>
         <sovpro-slider id="s1" value="40"></sovpro-slider>
         <span id="s1-value"></span>
 
         <h2>Slider #2</h2>
         <sovpro-slider id="s2" value="70"></sovpro-slider>
         <span id="s2-value"></span>
+
+        <p id="prelog">Slider #1 value input log</p>
 
         <!-- Slider Custom Element Template -->
         <template id="sovpro-slider">
