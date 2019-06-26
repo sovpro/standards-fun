@@ -224,7 +224,8 @@
                 _move(evt) {
                     const [rect] = this._track.getClientRects()
                     const minX = rect.left
-                    const maxX = rect.right - this._handle.offsetWidth + this._layerX
+                    // TODO: incorporate device pixel ratio / zoom with layerX
+                    const maxX = rect.right - this._handle.offsetWidth // + this._layerX
                     if (evt.pageX >= minX && evt.pageX <= maxX) {
                         const x = (evt.pageX - minX) / (maxX - minX)
                         const h = this._handle.offsetWidth / this._track.offsetWidth * 100
