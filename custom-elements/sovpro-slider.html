@@ -144,7 +144,7 @@
                     this._handle.addEventListener('mousedown', this.__mousedown, false)
 
                     // bound document event handlers
-                    this.__keyup = this.__keyup.bind(this)
+                    this.__keydown = this.__keydown.bind(this)
                     this.__mousemove = this.__mousemove.bind(this)
                     this.__mouseleave = this.__mouseleave.bind(this)
                     this.__mouseup = this.__mouseup.bind(this)
@@ -175,9 +175,10 @@
                     this._track.appendChild(this._handleShadow)
                     this._root.classList.add('dragging')
                 }
-                __keyup(evt) {
+                __keydown(evt) {
                     if (this._captureKeys === false) return
                     if (evt.keyCode >= 37 && evt.keyCode <= 40) {
+                        evt.preventDefault()
                         const value = this.value
                         if (evt.keyCode === 37 || evt.keyCode === 40) 
                             this.setAttribute('value', Math.max(0, value - 1))
@@ -195,13 +196,13 @@
                     this._finish(evt)
                 }
                 _removeRootListeners() {
-                    this._root.removeEventListener('keyup', this.__keyup, false)
+                    this._root.removeEventListener('keydown', this.__keydown, true)
                     this._root.removeEventListener('mousemove', this.__mousemove, false)
                     this._root.removeEventListener('mouseleave', this.__mouseleave, false)
                     this._root.removeEventListener('mouseup', this.__mouseup, false)
                 }
                 _addRootListeners() {
-                    this._root.addEventListener('keyup', this.__keyup, false)
+                    this._root.addEventListener('keydown', this.__keydown, true)
                     this._root.addEventListener('mousemove', this.__mousemove, false)
                     this._root.addEventListener('mouseleave', this.__mouseleave, false)
                     this._root.addEventListener('mouseup', this.__mouseup, false)
