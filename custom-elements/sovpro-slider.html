@@ -148,14 +148,6 @@
                     this.__mousemove = this.__mousemove.bind(this)
                     this.__mouseleave = this.__mouseleave.bind(this)
                     this.__mouseup = this.__mouseup.bind(this)
-                    
-                    this._position(this._formerVal)
-                    this.tabIndex = 0
-                    this.setAttribute('role', 'slider')
-                    this.setAttribute('aria-role', 'slider')
-                    this.setAttribute('aria-valuemin', 1)
-                    this.setAttribute('aria-valuemax', 100)
-                    this.setAttribute('aria-valuenow', this._formerVal)
                 }
                 __focus(evt) {
                     this._captureKeys = true
@@ -245,6 +237,14 @@
                     this._root.classList.remove('dragging')
                 }
                 connectedCallback() {
+                    this._position(this._formerVal)
+                    this.tabIndex = 0
+                    this.setAttribute('role', 'slider')
+                    this.setAttribute('aria-role', 'slider')
+                    this.setAttribute('aria-valuemin', 1)
+                    this.setAttribute('aria-valuemax', 100)
+                    this.setAttribute('aria-valuenow', this._formerVal)
+
                     this._root = this.ownerDocument.documentElement
                     this._addRootListeners()
                 }
