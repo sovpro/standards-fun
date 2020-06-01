@@ -1,0 +1,19 @@
+{
+  "name": "standards-fun",
+  "version": "0.0.0",
+  "description": "Experiments with W3C JavaScript Web APIs",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github-sovpro:sovpro/standards-fun.git"
+  },
+  "keywords": [],
+  "author": "sovpro (https://github.com/sovpro)",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "serve": "^11.3.1"
+  }
+}
