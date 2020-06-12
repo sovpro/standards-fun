@@ -8,7 +8,7 @@
         <script src="../javascripts/makelogfunc.js"></script>
         <script>
             // make a 10 line log under slider  #2
-            var log = makelogfunc({'afterend':'#prelog', 'head':true, 'roll':10})
+            var log = makelogfunc({position:'afterend', selector:'#prelog', from:'start', rotate:10})
 
             // copy slider #2 value to slider #1 on input
             document.addEventListener('DOMContentLoaded', () => {
